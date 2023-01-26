@@ -8,7 +8,7 @@ Resources for Sauce API client training, demos
 - Aims to store API Testing flows for common uses cases (for example, an OAuth 2.0 flow)
 
 ### `openapi-specs/`
-- Aims to store OpenAPI spec files. Contains OpenAPI spec for Sauce's demo API.
+- Aims to store OpenAPI spec files. Contains basic OpenAPI spec for Sauce's demo API
 
 ### `responses/`
 - Contains the JSON response for the `retail/product` demo API endpoint
