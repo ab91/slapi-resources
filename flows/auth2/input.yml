@@ -1,0 +1,19 @@
+- id: global
+  children:
+    - id: variable
+      name: domain
+      value: demoapi.apifortress.com
+    - id: variable
+      name: key
+      value: ABC123
+- id: sets
+  children:
+    - id: set
+      children:
+        - id: variable
+          name: user
+          value: User1
+        - id: variable
+          name: pass
+          value: "1234"
+      name: default

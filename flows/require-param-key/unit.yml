@@ -1,0 +1,52 @@
+- id: assert-exists
+  expression: status
+  comment: Do not continue if status variable is not populated
+  stoponfail: "true"
+- id: get
+  children:
+    - id: queryParam
+      name: status
+      value: ${status}
+  url: ${protocol}${domain}${endpoint}
+  var: payload
+  mode: json
+- id: assert-equals
+  expression: payload_response.headers['Content-Type']
+  value: application/json
+- id: assert-is
+  expression: payload
+  type: array
+- id: each
+  children:
+    - id: assert-is
+      expression: _1.id
+      type: integer
+    - id: assert-is
+      expression: _1.category.id
+      type: integer
+    - id: assert-exists
+      expression: _1.category.name
+    - id: assert-exists
+      expression: _1.name
+    - id: assert-is
+      expression: _1.photoUrls
+      type: array
+    - id: each
+      children:
+        - id: assert-exists
+          expression: _2
+      expression: _1.photoUrls
+    - id: assert-is
+      expression: _1.tags
+      type: array
+    - id: each
+      children:
+        - id: assert-is
+          expression: _2.id
+          type: integer
+        - id: assert-exists
+          expression: _2.name
+      expression: _1.tags
+    - id: assert-exists
+      expression: _1.status
+  expression: payload.pick(5)

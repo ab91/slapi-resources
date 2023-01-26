@@ -1,0 +1,19 @@
+- id: global
+  children:
+    - id: variable
+      name: protocol
+      value: https://
+    - id: variable
+      name: domain
+      value: petstore3.swagger.io
+    - id: variable
+      name: endpoint
+      value: /api/v3/pet/findByStatus
+- id: sets
+  children:
+    - id: set
+      children:
+        - id: variable
+          name: status
+          value: available
+      name: default

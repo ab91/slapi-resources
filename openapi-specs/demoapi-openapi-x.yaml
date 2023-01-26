@@ -1,0 +1,82 @@
+---
+openapi: 3.0.0
+info:
+  title: API Fortress Demo API
+  description: This is a sample server for the API Fortress Demo API
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Sauce Labs API Testing
+  url: https://saucelabs.com/platform/api-testing
+servers:
+  - url: http://demoapi.apifortress.com/api/retail
+tags:
+  - name: demo
+    description: Demo API for API Fortress
+    externalDocs:
+      description: Learn more about Sauce Labs API testing from our documentation
+      url: http://docs.saucelabs.com/api-testing/
+paths:
+  /product:
+    get:
+      tags:
+        - product
+      summary: Get products
+      operationId: getProducts
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+        "400":
+          description: Invalid key/value supplied
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: key
+  schemas:  
+    Products:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-sauce-faker: datatype.number
+        name:
+          type: string
+          example: Baseball Cap 
+          x-sauce-faker: lorem.words     
+        price:
+          type: number
+          format: float
+          x-sauce-faker: datatype.float
+        category:
+          type: string
+          example: 1
+          x-sauce-faker: lorem.word
+        description:
+          type: string
+          x-sauce-faker: lorem.sentence
+        quantity:
+          type: integer
+          format: int64   
+          x-sauce-faker: datatype.number      
+        imageURL:
+          type: string
+          x-sauce-faker: internet.url
+        color:
+          type: array
+          items:
+            type: string
+            x-sauce-faker: lorem.word
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
