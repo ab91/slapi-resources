@@ -4,7 +4,7 @@ docker pull quay.io/saucelabs/piestry
 
 docker run --platform linux/amd64 -v "$(pwd)/:/dir" -p 8000:5000 quay.io/saucelabs/piestry -u /dir/openapi-specs/demoapi-openapi.yaml
 
-docker run --platform linux/amd64 -v "$(pwd)/:/dir" -p 8000:5000 quay.io/saucelabs/piestry -u /dir/openapi-specs/demoapi-openapi-x.yaml
+docker run --platform linux/amd64 -v "$(pwd)/:/dir" -p 8000:5000 quay.io/saucelabs/piestry -u /dir/openapi-specs/demoapi-openapi-enhanced.yaml
 
 curl localhost:8000/api/retail/product
 
