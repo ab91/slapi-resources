@@ -46,3 +46,4 @@ assertions:
       - id: assert-exists
         expression: _1.updatedAt
     expression: payload.pick(5)
+    
