@@ -8,12 +8,12 @@ rootDir: .
 suites:
   # Remote Suite Test Run will run in parallel all tests:
   # - Published in project "Abe Sandbox"
-  # - name: "Remote Suite Test Run"
-  #   projectName: Abe Sandbox
-  #   useRemoteTests: true
-  #   testMatch:
-  #     - GET Product Details
-  #     - OAuth 2.0 Flow
+  - name: "Remote Suite Test Run"
+    projectName: Abe Sandbox
+    useRemoteTests: true
+    testMatch:
+      - GET Product Details
+      - OAuth 2.0 Flow
 
   # Local Suite Test Run will run all tests found in rootDir ("."), and matching any of the "testMatch" values.
   # Those tests will be attached to the project "Abe Sandbox".
