@@ -1,0 +1,16 @@
+- id: global
+  children:
+    - id: variable
+      name: protocol
+      value: http://
+    - id: variable
+      name: domain
+      value: demoapi.apifortress.com
+    - id: variable
+      name: endpoint
+      value: /api/retail/product
+- id: sets
+  children:
+    - id: set
+      children: []
+      name: default

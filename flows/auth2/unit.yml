@@ -1,75 +1,76 @@
-- id: post
-  children:
-    - id: header
-      name: key
-      value: ${key}
-    - id: body
-      contentType: application/json
-      content: |-
-        {"user":"${user}",
-         "password":${pass}}
-  url: http://${domain}/api/retail/user
-  var: userPayload
-  mode: json
-- id: set
-  var: access_token
-  mode: string
-  value: ${userPayload.Token}
-- id: comment
-  text: Token generated ${access_token}
-- id: comment
-  text: Token Generated and Stored
-- id: put
-  children:
-    - id: header
-      name: key
-      value: ${key}
-    - id: header
-      name: usertoken
-      value: ${access_token}
-    - id: body
-      contentType: application/json
-      content: |-
-        {
-        	"1": 1,
-        	"2": 2,
-        	"3": 3,
-        	"9": 3,
-        	"8": 1
-        }
-  url: http://${domain}/api/retail/cart
-  var: payload
-  mode: json
-- id: get
-  children:
-    - id: header
-      name: key
-      value: ${key}
-    - id: header
-      name: usertoken
-      value: ${access_token}
-  url: http://${domain}/api/retail/cart
-  var: cartPayload
-  mode: json
-- id: each
-  children:
-    - id: if
-      children:
-        - id: assert-is
-          expression: _1.id
-          type: integer
-        - id: set
-          var: id
-          mode: string
-          value: ${_1.id}
-        - id: assert-exists
-          expression: _1.item
-      expression: cartPayload.id==3
-    - id: comment
-      text: testing item ${_1.id}
-    - id: assert-is
-      expression: _1.quantity
-      type: integer
-  expression: cartPayload
-- id: comment
-  text: ${cartPayload[1].item}
+assertions: 
+  - id: post
+    children:
+      - id: header
+        name: key
+        value: ${key}
+      - id: body
+        contentType: application/json
+        content: |-
+          {"user":"${user}",
+          "password":${pass}}
+    url: http://${domain}/api/retail/user
+    var: userPayload
+    mode: json
+  - id: set
+    var: access_token
+    mode: string
+    value: ${userPayload.Token}
+  - id: comment
+    text: Token generated ${access_token}
+  - id: comment
+    text: Token Generated and Stored
+  - id: put
+    children:
+      - id: header
+        name: key
+        value: ${key}
+      - id: header
+        name: usertoken
+        value: ${access_token}
+      - id: body
+        contentType: application/json
+        content: |-
+          {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "9": 3,
+            "8": 1
+          }
+    url: http://${domain}/api/retail/cart
+    var: payload
+    mode: json
+  - id: get
+    children:
+      - id: header
+        name: key
+        value: ${key}
+      - id: header
+        name: usertoken
+        value: ${access_token}
+    url: http://${domain}/api/retail/cart
+    var: cartPayload
+    mode: json
+  - id: each
+    children:
+      - id: if
+        children:
+          - id: assert-is
+            expression: _1.id
+            type: integer
+          - id: set
+            var: id
+            mode: string
+            value: ${_1.id}
+          - id: assert-exists
+            expression: _1.item
+        expression: cartPayload.id==3
+      - id: comment
+        text: testing item ${_1.id}
+      - id: assert-is
+        expression: _1.quantity
+        type: integer
+    expression: cartPayload
+  - id: comment
+    text: ${cartPayload[1].item}

@@ -1,0 +1,48 @@
+assertions: 
+  - id: get
+    children:
+      - id: header
+        name: key
+        value: ABC123
+    url: ${protocol}${domain}${endpoint}
+    var: payload
+    mode: json
+  - id: assert-equals
+    expression: payload_response.headers['Content-Type']
+    value: application/json; charset=utf-8
+  - id: assert-is
+    expression: payload
+    type: array
+  - id: each
+    children:
+      - id: assert-is
+        expression: _1.id
+        type: integer
+      - id: assert-exists
+        expression: _1.name
+      - id: assert-is
+        expression: _1.price
+        type: float
+      - id: assert-exists
+        expression: _1.category
+      - id: assert-exists
+        expression: _1.description
+      - id: assert-is
+        expression: _1.quantity
+        type: integer
+      - id: assert-is
+        expression: _1.imageURL
+        type: url
+      - id: assert-is
+        expression: _1.color
+        type: array
+      - id: each
+        children:
+          - id: assert-exists
+            expression: _2
+        expression: _1.color
+      - id: assert-exists
+        expression: _1.createdAt
+      - id: assert-exists
+        expression: _1.updatedAt
+    expression: payload.pick(5)
