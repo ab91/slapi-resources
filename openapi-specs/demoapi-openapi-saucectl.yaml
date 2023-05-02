@@ -11,7 +11,7 @@ servers:
   - url: https://m2-saucectl.load2.apifortress.com/api/retail
 tags:
   - name: demo
-    description: Demo API for API Fortress
+    description: Demo API for Sauce API
     externalDocs:
       description: Learn more about Sauce Labs API testing from our documentation
       url: http://docs.saucelabs.com/api-testing/
